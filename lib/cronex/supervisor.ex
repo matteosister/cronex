@@ -8,7 +8,7 @@ defmodule Cronex.Supervisor do
   def init(:ok) do
     children = [
       worker(Cronex.Service, []),
-      #worker(Cronex.Checker, [])
+      worker(Cronex.Checker, [])
     ]
     supervise(children, strategy: :one_for_one)
   end

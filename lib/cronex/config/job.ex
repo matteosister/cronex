@@ -11,7 +11,15 @@ defmodule Cronex.Config.Job do
 
   def parse(config_line) do
     vars = config_line
-    |> String.split(~r{\s}, trim: true)
-    %Cronex.Config.Job{minute: at(vars, 0), hour: at(vars, 1), day: at(vars, 3), month: at(vars, 4), day_of_week: at(vars, 5), user: at(vars, 6), command: at(vars, 7)}
+    |> String.split(~r{\s}, trim: true, parts: 7)
+    %Cronex.Config.Job{
+      minute: at(vars, 0),
+      hour: at(vars, 1),
+      day: at(vars, 2),
+      month: at(vars, 3),
+      day_of_week: at(vars, 4),
+      user: at(vars, 5),
+      command: at(vars, 6)
+      }
   end
 end
