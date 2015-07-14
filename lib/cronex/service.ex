@@ -3,12 +3,13 @@ defmodule Cronex.Service do
   use Timex
 
   def start_link do
+    IO.puts "start_link service"
     GenServer.start_link(__MODULE__, [], name: :service)
   end
 
-  def handle_cast({:check, _}, state) do
-    Task.async(&output_now/0)
-    {:noreply, state}
+  def handle_call(:check, _, state) do
+    output_now
+    {:reply, state, state}
   end
 
   def output_now do
