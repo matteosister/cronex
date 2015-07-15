@@ -1,7 +1,9 @@
 defmodule Cronex.Checker do
   use GenServer
+  import Logger
 
   def start_link do
+    Logger.log(:debug, "Start checker")
     GenServer.start_link(__MODULE__, [], name: :checker)
   end
 

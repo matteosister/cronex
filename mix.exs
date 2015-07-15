@@ -7,7 +7,7 @@ defmodule Cronex.Mixfile do
      elixir: "~> 1.0",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     escript: [main_module: Cronex],
+     escript: escript_config,
      deps: deps]
   end
 
@@ -32,5 +32,9 @@ defmodule Cronex.Mixfile do
       {:timex, "~> 0.16.0"},
       {:ex_spec, "~> 0.3.0", only: :test}
     ]
+  end
+
+  def escript_config do
+    [ main_module: Cronex.CLI ]
   end
 end

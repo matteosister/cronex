@@ -1,9 +1,10 @@
 defmodule Cronex.Service do
   use GenServer
   use Timex
+  import Logger
 
   def start_link do
-    IO.puts "start_link service"
+    Logger.log(:debug, "Start service")
     GenServer.start_link(__MODULE__, [], name: :service)
   end
 
@@ -14,6 +15,5 @@ defmodule Cronex.Service do
 
   def output_now do
     {:ok, now} = Date.now |> DateFormat.format("{ISO}")
-    #IO.puts "receive #{now}"
   end
 end
