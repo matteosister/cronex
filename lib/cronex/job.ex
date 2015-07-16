@@ -1,4 +1,4 @@
-defmodule Cronex.Config.Job do
+defmodule Cronex.Job do
   import Enum
 
   defstruct minute: :all,
@@ -12,7 +12,7 @@ defmodule Cronex.Config.Job do
   def parse(config_line) do
     vars = config_line
     |> String.split(~r{\s}, trim: true, parts: 7)
-    %Cronex.Config.Job{
+    %Cronex.Job{
       minute: at(vars, 0),
       hour: at(vars, 1),
       day: at(vars, 2),
@@ -21,5 +21,9 @@ defmodule Cronex.Config.Job do
       user: at(vars, 5),
       command: at(vars, 6)
       }
+  end
+
+  def is_due? do
+
   end
 end

@@ -33,7 +33,11 @@ defmodule Cronex.CLI do
   end
 
   def parse_configuration(content) do
-    conf = Cronex.Config.Parser.parse_configuration(content)
-    IO.inspect conf
+    content
+    |> Cronex.Config.Parser.parse_configuration
+    |> Cronex.Checker.set_configuration
+    loop
   end
+
+  def loop, do: loop
 end

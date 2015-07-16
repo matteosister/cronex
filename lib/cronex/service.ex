@@ -4,16 +4,17 @@ defmodule Cronex.Service do
   import Logger
 
   def start_link do
-    Logger.log(:debug, "Start service")
+    log(:debug, "Start service")
     GenServer.start_link(__MODULE__, [], name: :service)
   end
 
-  def handle_call(:check, _, state) do
-    output_now
-    {:reply, state, state}
+  def handle_cast({:check, config}, state) do
+    IO.inspect config
+    {:noreply, state}
   end
 
   def output_now do
     {:ok, now} = Date.now |> DateFormat.format("{ISO}")
+    log(:debug, now)
   end
 end

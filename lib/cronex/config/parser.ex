@@ -1,7 +1,7 @@
 defmodule Cronex.Config.Parser do
   import String
   import Enum
-  alias Cronex.Config.Job
+  alias Cronex.Job
 
   def parse_configuration(content) do
     content
@@ -19,7 +19,7 @@ defmodule Cronex.Config.Parser do
 
   @doc """
   iex>Cronex.Config.Parser.convert_to_struct("0 19 * * * root test 2")
-  %Cronex.Config.Job{minute: "0", hour: "19", day: "*", month: "*", day_of_week: "*", user: "root", command: "test 2" }
+  %Cronex.Job{minute: "0", hour: "19", day: "*", month: "*", day_of_week: "*", user: "root", command: "test 2" }
   """
   def convert_to_struct(line) do
     Job.parse(line)
