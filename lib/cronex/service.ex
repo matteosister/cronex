@@ -9,7 +9,7 @@ defmodule Cronex.Service do
   end
 
   def handle_cast({:check, config}, state) do
-    IO.inspect config
+    log(:debug, config)
     {:noreply, state}
   end
 

@@ -3,6 +3,14 @@ defmodule Cronex.Config.Parser do
   import Enum
   alias Cronex.Job
 
+  def parse_file(file) do
+    res = File.read(file)
+    case res do
+      {:error, _} -> IO.puts "impossible to open file #{file}"
+      {:ok, content} -> parse_configuration(content)
+    end
+  end
+
   def parse_configuration(content) do
     content
     |> split_lines

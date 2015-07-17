@@ -36,7 +36,7 @@ defmodule Cronex.CLI do
     content
     |> Cronex.Config.Parser.parse_configuration
     |> Cronex.Checker.set_configuration
-    loop
+    #loop
   end
 
   def loop, do: loop
