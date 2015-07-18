@@ -8,13 +8,8 @@ defmodule Cronex.Service do
     GenServer.start_link(__MODULE__, [], name: :service)
   end
 
-  def handle_cast({:check, config}, state) do
-    log(:debug, config)
+  def handle_cast({:check, _config}, state) do
+    #log(:debug, config)
     {:noreply, state}
-  end
-
-  def output_now do
-    {:ok, now} = Date.now |> DateFormat.format("{ISO}")
-    log(:debug, now)
   end
 end

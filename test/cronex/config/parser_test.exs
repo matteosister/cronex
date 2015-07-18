@@ -1,7 +1,6 @@
 defmodule Cronex.Config.ParserTest do
   use ExSpec, async: true
   alias Cronex.Config.Parser
-  doctest Cronex.Config.Parser
 
   setup do
     content = """

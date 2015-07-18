@@ -1,4 +1,5 @@
 defmodule Cronex.CLI do
+
   def run(argv) do
     parse_args(argv)
   end
