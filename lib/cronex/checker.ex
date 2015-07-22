@@ -25,12 +25,19 @@ defmodule Cronex.Checker do
     {:ok, []}
   end
 
+  @doc """
+  sets the checker configuration, it is added to the actual one
+  """
   def handle_cast({:config, config}, state) do
     new_state = config ++ state
     log(:debug, "new config: #{IO.inspect new_state}")
     {:noreply, new_state}
   end
 
+  @doc """
+  sets the checker configuration file, it is then parsed and the configuration
+  gets passed to the :config cast
+  """
   def handle_cast({:config_file, config_file}, state) do
     config_file
     |> File.read!
@@ -39,6 +46,9 @@ defmodule Cronex.Checker do
     {:noreply, state}
   end
 
+  @doc """
+  tick every x amount of time and calls the :service GenServer
+  """
   def handle_call(:tick, _, config) do
     GenServer.cast(:service, {:check, config})
     {:noreply, config}
